@@ -18,6 +18,6 @@
 	set(dataSourceName="todo");
 	set(URLRewriting="On");
 	// Reload your application with ?reload=true&password=todo
-	set(reloadPassword="todo");
+	// set(reloadPassword="todo");
 	// CLI-Appends-Here
 </cfscript>
