@@ -23,7 +23,8 @@
         "commandbox-cfformat":"*"
     },
     "installPaths":{
-        "cfwheels-core":"wheels/"
+        "cfwheels-core":"wheels/",
+        "orgh213172lex":"orgh213172lex/"
     },
     "dependencies":{
         "cfwheels-core":"^2.2.0",

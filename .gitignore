@@ -12,3 +12,4 @@ yarn-error.log
 ## Ignored Dependencies
 wheels/*
 plugins/*
+*.lex
