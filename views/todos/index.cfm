@@ -1,37 +1,35 @@
 <section class="todoapp">
 	<header class="header">
 		<h1>todos</h1>
-		<form hx-post="/todos", hx-target="#todo-list", hx-swap="afterbegin", _="on htmx:afterOnLoad set #txtTodo.value to ''">
-			<input class="new-todo" placeholder="What needs to be done?" autofocus>
-		</form>
+		<input class="new-todo" placeholder="What needs to be done?" autofocus>
 	</header>
-	<section style="display:none" class="main">
+	<!-- This section should be hidden by default and shown when there are todos -->
+	<section class="main">
 		<input id="toggle-all" class="toggle-all" type="checkbox">
 		<label for="toggle-all">Mark all as complete</label>
-		<ul class="todo-list"></ul>
-		<footer class="footer">
-			<span class="todo-count"></span>
-			<ul class="filters">
-				<li>
-					<a href="#/" class="selected">All</a>
-				</li>
-				<li>
-				<a href="#/active">Active</a>
-				</li>
-				<li>
-				<a href="#/completed">Completed</a>
-				</li>
-			</ul>
-			<button class="clear-completed">Clear completed</button>
-		</footer>
+		<ul class="todo-list">
+			<!-- These are here just to show the structure of the list items -->
+			<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+			<cfoutput>#includePartial(partial="todo", query="todos")#</cfoutput>
+		</ul>
 	</section>
+	<!-- This footer should be hidden by default and shown when there are todos -->
+	<footer class="footer">
+		<!-- This should be `0 items left` by default -->
+		<span class="todo-count"><strong>0</strong> item left</span>
+		<!-- Remove this if you don't implement routing -->
+		<ul class="filters">
+			<li>
+				<a class="selected" href="#/">All</a>
+			</li>
+			<li>
+				<a href="#/active">Active</a>
+			</li>
+			<li>
+				<a href="#/completed">Completed</a>
+			</li>
+		</ul>
+		<!-- Hidden if no completed items are left ↓ -->
+		<button class="clear-completed">Clear completed</button>
+	</footer>
 </section>
-<footer class="info">
-	<p>Double-click to edit a todo</p>
-	<p>Written by <a href="http://twitter.com/lukeed05">Luke Edwards</a></p>
-	<p>Refactored by <a href="https://github.com/xorgy">Aaron Muir Hamilton</a></p>
-	<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-</footer>
-<script src="dist/bundle.js"></script>
-<script src="node_modules/todomvc-common/base.js"></script>
-<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
