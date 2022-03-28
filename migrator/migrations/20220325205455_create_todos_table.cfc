@@ -33,7 +33,7 @@ component extends="wheels.migrator.Migration" hint="create todos table" {
 			try {
 				t = createTable(name = 'todos');
 				t.string(columnNames="title", default="", null=true, limit="255");
-				t.binary(columnNames='completed');
+				t.integer(columnNames='completed', default="0");
 				t.timestamps();
 				t.create();
 			} catch (any e) {
