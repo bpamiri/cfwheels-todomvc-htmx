@@ -23,7 +23,7 @@ component extends="Controller" {
 		} else {
 			//renderText(serializeJSON(params));
 			renderPartial(
-				partial="todo",
+				partial="todo-item",
 				layout="false",
 				id=todo.id,
 				title=todo.title,
@@ -53,7 +53,7 @@ component extends="Controller" {
 		todo=model("todo").updateByKey(params.key, params.todo);
 		itemsLeft=model("todo").count(where="completed = 0");
 		renderPartial(
-			partial="todo",
+			partial="todo-item",
 			layout="false",
 			id=params.key,
 			title=params.todo.title,
@@ -71,12 +71,21 @@ component extends="Controller" {
 	}
 
 	/**
+	* View All Todos
+	**/
+	function all() {
+		todos=model("todo").findAll();
+		itemsLeft=model("todo").count(where="completed=0");
+		renderPartial("todo-list");
+	}
+
+	/**
 	* View Active Todos
 	**/
 	function active() {
 		todos=model("todo").findAll(where="completed=0");
 		itemsLeft=model("todo").count(where="completed=0");
-		renderView(action="index");
+		renderPartial("todo-list");
 	}
 
 	/**
@@ -85,7 +94,7 @@ component extends="Controller" {
 	function completed() {
 		todos=model("todo").findAll(where="completed=1");
 		itemsLeft=model("todo").count(where="completed=0");
-		renderView(action="index");
+		renderPartial("todo-list");
 	}
 
 	/**
@@ -102,7 +111,7 @@ component extends="Controller" {
 		if(todo.update(todo)){
 			itemsLeft=model("todo").count(where="completed = 0");
 			renderPartial(
-				partial="todo",
+				partial="todo-item",
 				layout="false",
 				id=todo.id,
 				title=todo.title,
@@ -112,13 +121,28 @@ component extends="Controller" {
 	}
 
 	/**
+	* toggle Todo status
+	**/
+	function toggleall() {
+		if (structKeyExists(params,"toggleall")){
+			params.completed=1;
+		} else {
+			params.completed=0;
+		}
+		recordsUpdated = model("todo").updateAll( completed=params.completed );
+		todos=model("todo").findAll();
+		itemsLeft=model("todo").count(where="completed=0");
+		renderView(action="index");
+	}
+
+	/**
 	* Delete All completed Todos
 	**/
 	function clear() {
 		todo=model("todo").deleteAll(where="completed = 1");
 		todos=model("todo").findAll();
 		itemsLeft=model("todo").count(where="completed=0");
-		renderView(action="index");
+		renderPartial("todo-list");
 	}
 
 	/**
