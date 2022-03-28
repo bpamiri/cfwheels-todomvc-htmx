@@ -7,8 +7,10 @@
 	mapper()
 		// CLI-Appends-Here
 		.resources(name="todos", mapFormat="false")
-		.get(name="active", pattern="active", to="todos##active")
-		.get(name="completed", pattern="completed", to="todos##completed")
+		.get(name="active", pattern="/active", to="todos##active")
+		.get(name="completed", pattern="/completed", to="todos##completed")
+		.patch(name="toggle", pattern="/toggle/[key]", to="todos##toggle")
+		.delete(name="clear", pattern="/clear", to="todos##clear")
 
 		// The "wildcard" call below enables automatic mapping of "controller/action" type routes.
 		// This way you don't need to explicitly add a route every time you create a new action in a controller.
