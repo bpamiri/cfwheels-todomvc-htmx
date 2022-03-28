@@ -1,7 +1,13 @@
 <cfoutput>
-	<li class="view" id="todo-li-#id#">
+	<li class="#( (completed == 1) ? "completed" : "view" )#" id="todo-li-#id#">
 		<div class="view">
-			<input class="toggle" type="checkbox">
+			<input
+				hx-patch="/todos/#id#"
+				hx-target="closest li"
+				hx-swap="outerHTML"
+				hx-trigger="click"
+				class="toggle" type="checkbox"
+				#( (completed == 1) ? "checked" : "" )#>
 			<label>#title#</label>
 			<button hx-delete="/todos/#id#"
 					hx-target="closest li"
