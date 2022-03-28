@@ -12,39 +12,37 @@
 			<input name="todo.completed" type="hidden" value="0">
 			</form>
 		</header>
-		<!-- This section should be hidden by default and shown when there are todos -->
+		<!-- TODO This section should be hidden by default and shown when there are todos -->
 		<section class="main">
 			<input id="toggle-all" class="toggle-all" type="checkbox">
 			<label for="toggle-all">Mark all as complete</label>
 			<ul class="todo-list">
-				<!-- These are here just to show the structure of the list items -->
-				<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
 				#includePartial(partial="todo", query=todos)#
 			</ul>
 		</section>
-		<!-- This footer should be hidden by default and shown when there are todos -->
-		<footer class="footer">
-			<!-- This should be `0 items left` by default -->
-			<span class="todo-count" id="itemsLeft">#pluralize(word="item", count=itemsLeft)# left</span>
-			<!-- Remove this if you don't implement routing -->
-			<ul class="filters">
-				<li>
-					<a class="#( (params.action == "index" || params.action == "clear") ? "selected" : "")#" href="/">All</a>
-				</li>
-				<li>
-					<a class="#( (params.action == "active") ? "selected" : "")#" href="/active">Active</a>
-				</li>
-				<li>
-					<a class="#( (params.action == "completed") ? "selected" : "")#" href="/completed">Completed</a>
-				</li>
-			</ul>
-			<!-- Hidden if no completed items are left ↓ -->
-			<button
-				hx-delete="/clear"
-				hx-target="body"
-				hx-swap="innerHTML"
-				class="clear-completed">Clear completed</button>
-		</footer>
+			<!--- This footer should be hidden by default and shown when there are todos --->
+			<footer class="footer">
+				<!--- This should be `0 items left` by default --->
+				<span class="todo-count" id="itemsLeft">#pluralize(word="item", count=itemsLeft)# left</span>
+				<!--- Remove this if you don't implement routing --->
+				<ul class="filters">
+					<li>
+						<a class="#( (params.action == "index" || params.action == "clear") ? "selected" : "")#" href="/">All</a>
+					</li>
+					<li>
+						<a class="#( (params.action == "active") ? "selected" : "")#" href="/active">Active</a>
+					</li>
+					<li>
+						<a class="#( (params.action == "completed") ? "selected" : "")#" href="/completed">Completed</a>
+					</li>
+				</ul>
+				<!-- TODO Hidden if no completed items are left ↓ -->
+				<button
+					hx-delete="/clear"
+					hx-target="body"
+					hx-swap="innerHTML"
+					class="clear-completed">Clear completed</button>
+			</footer>
 	</section>
 </cfoutput>
 <script>htmx.logAll();</script>
