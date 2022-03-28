@@ -29,13 +29,13 @@
 			<!-- Remove this if you don't implement routing -->
 			<ul class="filters">
 				<li>
-					<a class="selected" href="##/">All</a>
+					<a class="#( (structKeyExists(params,"filter") and params.filter == "") ? "selected" : "")#" href="/">All</a>
 				</li>
 				<li>
-					<a href="##/active">Active</a>
+					<a class="#( (structKeyExists(params,"filter") and params.filter == "active") ? "selected" : "")#" href="/?filter=active">Active</a>
 				</li>
 				<li>
-					<a href="##/completed">Completed</a>
+					<a class="#( (structKeyExists(params,"filter") and params.filter == "completed") ? "selected" : "")#" href="/?filter=completed">Completed</a>
 				</li>
 			</ul>
 			<!-- Hidden if no completed items are left ↓ -->
