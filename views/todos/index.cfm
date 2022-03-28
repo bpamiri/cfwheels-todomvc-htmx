@@ -29,7 +29,7 @@
 			<!-- Remove this if you don't implement routing -->
 			<ul class="filters">
 				<li>
-					<a class="#( (params.action == "index") ? "selected" : "")#" href="/">All</a>
+					<a class="#( (params.action == "index" || params.action == "clear") ? "selected" : "")#" href="/">All</a>
 				</li>
 				<li>
 					<a class="#( (params.action == "active") ? "selected" : "")#" href="/active">Active</a>
