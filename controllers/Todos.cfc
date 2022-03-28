@@ -8,8 +8,23 @@ component extends="Controller" {
 	* View all Todos
 	**/
 	function index() {
-		todos=model("todo").findAll();
-		itemsLeft=model("todo").count(where="completed = 0");
+		//presert params.term if not passed in
+		if (!structKeyExists(params,"filter")) {
+			params.filter = "";
+		}
+
+		// find filtered list of todos
+		switch(params.filter) {
+			case "active":
+				todos=model("todo").findAll(where="completed=0");
+			case "completed":
+				todos=model("todo").findAll(where="completed=1");
+			default:
+				todos=model("todo").findAll();
+		}
+
+		//set the items left count
+		itemsLeft=model("todo").count(where="completed=0");
 	}
 
 	/**
