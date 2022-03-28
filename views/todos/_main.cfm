@@ -2,7 +2,7 @@
 	<section class="main">
 		<input
 			hx-patch="/toggleall"
-			hx-target="body"
+			hx-target="ul.todo-list"
 			hx-swap="innerHTML"
 			hx-trigger="click"
 			hx-include="[name='toggleall']"
