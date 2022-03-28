@@ -8,6 +8,7 @@
 		<cfoutput>#styleSheetLinkTag("base")#</cfoutput>
 		<cfoutput>#styleSheetLinkTag("index")#</cfoutput>
 		<cfoutput>#styleSheetLinkTag("app")#</cfoutput>
+		<script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
 	</head>
 
 	<body>

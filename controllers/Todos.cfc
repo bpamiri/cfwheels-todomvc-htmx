@@ -9,6 +9,7 @@ component extends="Controller" {
 	**/
 	function index() {
 		todos=model("todo").findAll();
+		itemsLeft=model("todo").count(where="completed = 0");
 	}
 
 	/**
@@ -31,9 +32,9 @@ component extends="Controller" {
 	function create() {
 		todo=model("todo").create(params.todo);
 		if(todo.hasErrors()){
-			renderView(action="new");
+			renderText("<li>errors</li>");
 		} else {
-			redirectTo(action="index", success="Todo successfully created");
+			renderText(serializeJSON(params));
 		}
 	}
 
@@ -61,7 +62,8 @@ component extends="Controller" {
 	**/
 	function delete() {
 		todo=model("todo").deleteByKey(params.key);
-		redirectTo(action="index", success="Todo successfully deleted");
+		itemsLeft=model("todo").count(where="completed = 0");
+		renderText("<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>");
 	}
 
 	/**
