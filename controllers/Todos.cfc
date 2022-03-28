@@ -1,7 +1,7 @@
 component extends="Controller" {
 
 	function config() {
-		verifies(except="index,active,completed,clear,new,create", params="key", paramsTypes="integer", handler="objectNotFound");
+		verifies(only="show,update,delete,toggle", params="key", paramsTypes="integer", handler="objectNotFound");
 	}
 
 	/**
@@ -10,38 +10,6 @@ component extends="Controller" {
 	function index() {
 		todos=model("todo").findAll();
 		itemsLeft=model("todo").count(where="completed=0");
-	}
-
-		/**
-	* View Active Todos
-	**/
-	function active() {
-		todos=model("todo").findAll(where="completed=0");
-		itemsLeft=model("todo").count(where="completed=0");
-		renderView(action="index");
-	}
-
-	/**
-	* View Completed Todos
-	**/
-	function completed() {
-		todos=model("todo").findAll(where="completed=1");
-		itemsLeft=model("todo").count(where="completed=0");
-		renderView(action="index");
-	}
-
-	/**
-	* View Todo
-	**/
-	function show() {
-		todo=model("todo").findByKey(params.key);
-	}
-
-	/**
-	* Add New Todo
-	**/
-	function new() {
-		todo=model("todo").new();
 	}
 
 	/**
@@ -65,12 +33,60 @@ component extends="Controller" {
 	}
 
 	/**
-	* Edit Todo
+	* View Todo
 	**/
-	function edit() {
+	function show() {
 		todo=model("todo").findByKey(params.key);
+		renderPartial(
+			partial="show",
+			layout="false",
+			id=todo.id,
+			title=todo.title,
+			completed=todo.completed);
 	}
 
+	/**
+	* Update Todo
+	**/
+	function update() {
+		//update item
+		todo=model("todo").updateByKey(params.key, params.todo);
+		itemsLeft=model("todo").count(where="completed = 0");
+		renderPartial(
+			partial="todo",
+			layout="false",
+			id=params.key,
+			title=params.todo.title,
+			completed=params.todo.completed,
+			itemsLeft=itemsLeft);
+	}
+
+	/**
+	* Delete Todo
+	**/
+	function delete() {
+		todo=model("todo").deleteByKey(params.key);
+		itemsLeft=model("todo").count(where="completed = 0");
+		renderText("<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>");
+	}
+
+	/**
+	* View Active Todos
+	**/
+	function active() {
+		todos=model("todo").findAll(where="completed=0");
+		itemsLeft=model("todo").count(where="completed=0");
+		renderView(action="index");
+	}
+
+	/**
+	* View Completed Todos
+	**/
+	function completed() {
+		todos=model("todo").findAll(where="completed=1");
+		itemsLeft=model("todo").count(where="completed=0");
+		renderView(action="index");
+	}
 
 	/**
 	* toggle Todo status
@@ -95,30 +111,8 @@ component extends="Controller" {
 		}
 	}
 
-		/**
-	* Update Todo
-	**/
-	function update() {
-		//update item
-		todo=model("todo").findByKey(params.key);
-		if(todo.update(params.todo)){
-			redirectTo(action="index", success="Todo successfully updated");
-		} else {
-			renderView(action="edit");
-		}
-	}
-
 	/**
-	* Delete Todo
-	**/
-	function delete() {
-		todo=model("todo").deleteByKey(params.key);
-		itemsLeft=model("todo").count(where="completed = 0");
-		renderText("<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>");
-	}
-
-	/**
-	* Delete Todo
+	* Delete All completed Todos
 	**/
 	function clear() {
 		todo=model("todo").deleteAll(where="completed = 1");
