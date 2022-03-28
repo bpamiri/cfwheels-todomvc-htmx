@@ -10,6 +10,9 @@
 		</div>
 		<input class="edit" value="#title#">
 	</li>
+	<cfif structKeyExists(getHTTPRequestData().headers,"HX-Request")>
+		<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>
+	</cfif>
 </cfoutput>
 
 <!---
