@@ -2,7 +2,7 @@
 	<li class="#( (completed == 1) ? "completed" : "view" )#" id="todo-li-#id#">
 		<div class="view">
 			<input
-				hx-patch="/todos/#id#"
+				hx-patch="/toggle/#id#"
 				hx-target="closest li"
 				hx-swap="outerHTML"
 				hx-trigger="click"
