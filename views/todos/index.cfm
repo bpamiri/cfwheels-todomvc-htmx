@@ -39,7 +39,11 @@
 				</li>
 			</ul>
 			<!-- Hidden if no completed items are left ↓ -->
-			<button class="clear-completed">Clear completed</button>
+			<button
+				hx-delete="/clear"
+				hx-target="body"
+				hx-swap="innerHTML"
+				class="clear-completed">Clear completed</button>
 		</footer>
 	</section>
 </cfoutput>
