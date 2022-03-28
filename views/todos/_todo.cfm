@@ -8,7 +8,12 @@
 				hx-trigger="click"
 				class="toggle" type="checkbox"
 				#( (completed == 1) ? "checked" : "" )#>
-			<label>#title#</label>
+			<label
+				hx-get="/todos/#id#"
+				hx-target="closest li"
+				hx-swap="outerHTML"
+				hx-trigger="dblclick"
+				>#title#</label>
 			<button hx-delete="/todos/#id#"
 					hx-target="closest li"
 					hx-swap="outerHTML"
