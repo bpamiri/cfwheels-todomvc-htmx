@@ -1,7 +1,7 @@
 component extends="Controller" {
 
 	function config() {
-		verifies(except="index,new,create", params="key", paramsTypes="integer", handler="objectNotFound");
+		verifies(except="index,active,completed,clear,new,create", params="key", paramsTypes="integer", handler="objectNotFound");
 	}
 
 	/**
@@ -18,7 +18,7 @@ component extends="Controller" {
 	function active() {
 		todos=model("todo").findAll(where="completed=0");
 		itemsLeft=model("todo").count(where="completed=0");
-
+		renderView(action="index");
 	}
 
 	/**
@@ -27,6 +27,7 @@ component extends="Controller" {
 	function completed() {
 		todos=model("todo").findAll(where="completed=1");
 		itemsLeft=model("todo").count(where="completed=0");
+		renderView(action="index");
 	}
 
 	/**
@@ -70,36 +71,40 @@ component extends="Controller" {
 		todo=model("todo").findByKey(params.key);
 	}
 
+
 	/**
+	* toggle Todo status
+	**/
+	function toggle() {
+		// toggle completed status
+		todo=model("todo").findByKey(params.key);
+		if (todo.completed == 0) {
+			todo.completed = 1;
+		} else {
+			todo.completed = 0;
+		}
+		if(todo.update(todo)){
+			itemsLeft=model("todo").count(where="completed = 0");
+			renderPartial(
+				partial="todo",
+				layout="false",
+				id=todo.id,
+				title=todo.title,
+				completed=todo.completed,
+				itemsLeft=itemsLeft);
+		}
+	}
+
+		/**
 	* Update Todo
 	**/
 	function update() {
-		if (isPatch()){
-			// toggle completed status
-			todo=model("todo").findByKey(params.key);
-			if (todo.completed == 0) {
-				todo.completed = 1;
-			} else {
-				todo.completed = 0;
-			}
-			if(todo.update(todo)){
-				itemsLeft=model("todo").count(where="completed = 0");
-				renderPartial(
-					partial="todo",
-					layout="false",
-					id=todo.id,
-					title=todo.title,
-					completed=todo.completed,
-					itemsLeft=itemsLeft);
-				}
+		//update item
+		todo=model("todo").findByKey(params.key);
+		if(todo.update(params.todo)){
+			redirectTo(action="index", success="Todo successfully updated");
 		} else {
-			//update item
-			todo=model("todo").findByKey(params.key);
-			if(todo.update(params.todo)){
-				redirectTo(action="index", success="Todo successfully updated");
-			} else {
-				renderView(action="edit");
-			}
+			renderView(action="edit");
 		}
 	}
 
@@ -110,6 +115,16 @@ component extends="Controller" {
 		todo=model("todo").deleteByKey(params.key);
 		itemsLeft=model("todo").count(where="completed = 0");
 		renderText("<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>");
+	}
+
+	/**
+	* Delete Todo
+	**/
+	function clear() {
+		todo=model("todo").deleteAll(where="completed = 1");
+		todos=model("todo").findAll();
+		itemsLeft=model("todo").count(where="completed=0");
+		renderView(action="index");
 	}
 
 	/**
