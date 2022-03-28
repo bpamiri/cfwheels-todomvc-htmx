@@ -60,15 +60,21 @@ component extends="Controller" {
 		if (isPatch()){
 			// toggle completed status
 			todo=model("todo").findByKey(params.key);
-			if (todo.completed eq 0) {
+			if (todo.completed == 0) {
 				todo.completed = 1;
 			} else {
 				todo.completed = 0;
 			}
 			if(todo.update(todo)){
 				itemsLeft=model("todo").count(where="completed = 0");
-				renderText("<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>");
-			}
+				renderPartial(
+					partial="todo",
+					layout="false",
+					id=todo.id,
+					title=todo.title,
+					completed=todo.completed,
+					itemsLeft=itemsLeft);
+				}
 		} else {
 			//update item
 			todo=model("todo").findByKey(params.key);
