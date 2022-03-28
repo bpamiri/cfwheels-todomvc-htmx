@@ -132,7 +132,7 @@ component extends="Controller" {
 		recordsUpdated = model("todo").updateAll( completed=params.completed );
 		todos=model("todo").findAll();
 		itemsLeft=model("todo").count(where="completed=0");
-		renderView(action="index");
+		renderPartial("todo-list");
 	}
 
 	/**
