@@ -31,10 +31,18 @@ component extends="Controller" {
 	**/
 	function create() {
 		todo=model("todo").create(params.todo);
+		itemsLeft=model("todo").count(where="completed = 0");
 		if(todo.hasErrors()){
-			renderText("<li>errors</li>");
+			renderText("<li>error occured</li>");
 		} else {
-			renderText(serializeJSON(params));
+			//renderText(serializeJSON(params));
+			renderPartial(
+				partial="todo",
+				layout="false",
+				id=todo.id,
+				title=todo.title,
+				completed=todo.completed,
+				itemsLeft=itemsLeft);
 		}
 	}
 
