@@ -57,11 +57,26 @@ component extends="Controller" {
 	* Update Todo
 	**/
 	function update() {
-		todo=model("todo").findByKey(params.key);
-		if(todo.update(params.todo)){
-			redirectTo(action="index", success="Todo successfully updated");
+		if (isPatch()){
+			// toggle completed status
+			todo=model("todo").findByKey(params.key);
+			if (todo.completed eq 0) {
+				todo.completed = 1;
+			} else {
+				todo.completed = 0;
+			}
+			if(todo.update(todo)){
+				itemsLeft=model("todo").count(where="completed = 0");
+				renderText("<span class='todo-count' id='itemsLeft' hx-swap-oob='true'>#pluralize(word='item', count=itemsLeft)# left</span>");
+			}
 		} else {
-			renderView(action="edit");
+			//update item
+			todo=model("todo").findByKey(params.key);
+			if(todo.update(params.todo)){
+				redirectTo(action="index", success="Todo successfully updated");
+			} else {
+				renderView(action="edit");
+			}
 		}
 	}
 
