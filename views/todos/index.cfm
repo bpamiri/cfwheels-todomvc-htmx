@@ -2,6 +2,8 @@
 	<section class="todoapp">
 		#includePartial("header")#
 		#includePartial("main")#
-		#includePartial("footer")#
+		<footer class="footer" id="footer">
+			#includePartial("footer")#
+		</footer>
 	</section>
 </cfoutput>
