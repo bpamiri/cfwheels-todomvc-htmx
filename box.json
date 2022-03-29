@@ -1,20 +1,20 @@
 {
-    "name":"todo",
+    "name":"CFWheels Template - TodoMVC - HTMX",
     "version":"1.0.0",
-    "author":"You",
-    "location":"",
-    "slug":"todo",
+    "author":"Peter Amiri",
+    "location":"ForgeboxStorage",
+    "slug":"cfwheels-todomvc-htmx",
     "createPackageDirectory":false,
     "type":"cfwheels-templates",
-    "keywords":"",
-    "homepage":"",
-    "documentation":"",
+    "keywords":"CFWheels, template, TodoMVC, HTMX",
+    "homepage":"https://github.com/bpamiri/cfwheels-todomvc-htmx/",
+    "documentation":"https://github.com/bpamiri/cfwheels-todomvc-htmx/",
     "repository":{
-        "type":"",
-        "url":""
+        "type":"git",
+        "url":"https://github.com/bpamiri/cfwheels-todomvc-htmx.git"
     },
-    "bugs":"",
-    "shortDescription":"",
+    "bugs":"https://github.com/bpamiri/cfwheels-todomvc-htmx/issues",
+    "shortDescription":"CFWheels - TodoMVC - HTMX",
     "contributors":[],
     "ignore":[],
     "devDependencies":{
