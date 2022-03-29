@@ -14,6 +14,7 @@
 		To run with rewriting set to "on", you need to apply the necessary rewrite rules on the web server first.
 	*/
 
+	set(autoMigrateDatabase=true);
 	// Added via CFWheels CLI
 	set(dataSourceName="todo");
 	set(URLRewriting="On");
