@@ -4,12 +4,20 @@ This is a reference implementation of the TodoMVC application in CFWheels and HT
 
 ## To install
 
-To install this package you'll need to have a running CommandBox installation. Then you can install this package with the following:
+To install this package you'll need to have a running CommandBox installation. It is also assumed that you have the CFWheels CLI installed into your CommandBox. 
 
-```shell
+To install the CFWheels CLI, launch CommandBox and issue an install command:
+
+```
+box 
+install cfwheels-cli
+```
+
+Once installed, you can install this package with the following:
+
+```
 box
-mkdir myapp --cd
-install cfwheels-todomvc-htmx
+wheels generate app name=todo template=cfwheels-todomvc-htmx --setupH2
 server start
 install
 ```
