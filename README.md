@@ -17,7 +17,8 @@ Once installed, you can install this package with the following:
 
 ```
 box
-wheels generate app name=todo template=cfwheels-todomvc-htmx --setupH2
-server start
+wheels g app name=todo datasourceName=todo template=cfwheels-todomvc-htmx --setupH2
 install
+start
+wheels db latest
 ```
