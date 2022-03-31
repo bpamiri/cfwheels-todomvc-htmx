@@ -9,6 +9,7 @@ npm-debug.log
 yarn-error.log
 
 ## Ignored Dependencies
+wheels/
 wheels/*
 plugins/*
 *.lex

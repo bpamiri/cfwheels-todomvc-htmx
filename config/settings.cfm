@@ -20,5 +20,18 @@
 	set(URLRewriting="On");
 	// Reload your application with ?reload=true&password=todo
 	// set(reloadPassword="todo");
+
+	// Configurable paths.
+	set(eventPath = "events");
+	set(filePath = "files");
+	set(imagePath = "images");
+	set(javascriptPath = "javascripts");
+	set(modelPath = "models");
+	set(pluginPath = "plugins");
+	set(pluginComponentPath = "plugins");
+	set(stylesheetPath = "stylesheets");
+	set(viewPath = "views");
+	set(controllerPath = "controllers");
+
 	// CLI-Appends-Here
 </cfscript>
