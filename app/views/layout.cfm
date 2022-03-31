@@ -7,7 +7,7 @@
 		<title>CFWheels • TodoMVC • HTMX</title>
 		<cfoutput>#styleSheetLinkTag(source="base",encode=false)#</cfoutput>
 		<cfoutput>#styleSheetLinkTag(source="index",encode=false)#</cfoutput>
-		<cfoutput>#styleSheetLinkTag(source="app")#</cfoutput>
+		<cfoutput>#styleSheetLinkTag(source="app",encode=false)#</cfoutput>
 		<script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/hyperscript.org@0.9.5"></script>
 	</head>
