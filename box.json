@@ -1,6 +1,6 @@
 {
     "name":"CFWheels Template - TodoMVC - HTMX",
-    "version":"1.0.9",
+    "version":"1.0.10",
     "author":"Peter Amiri",
     "location":"ForgeboxStorage",
     "slug":"cfwheels-todomvc-htmx",
@@ -23,10 +23,10 @@
         "commandbox-cfformat":"*"
     },
     "installPaths":{
-        "cfwheels-core":"wheels/",
+        "cfwheels-core":"wheels/"
     },
     "dependencies":{
-        "cfwheels-core":"^2.2.0",
+        "cfwheels-core":"^2.2.0"
     },
     "scripts":{}
 }
