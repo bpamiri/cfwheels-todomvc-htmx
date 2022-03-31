@@ -11,6 +11,7 @@ To install the CFWheels CLI, launch CommandBox and issue an install command:
 ```
 box 
 install cfwheels-cli
+reload
 ```
 
 Once installed, you can install this package with the following:
@@ -18,7 +19,6 @@ Once installed, you can install this package with the following:
 ```
 box
 wheels g app name=todo datasourceName=todo template=cfwheels-todomvc-htmx --setupH2
-install
-start
-wheels db latest
+package install
+server start
 ```
