@@ -22,16 +22,16 @@
 	// set(reloadPassword="todo");
 
 	// Configurable paths.
-	set(eventPath = "app/events");
-	set(filePath = "app/files");
-	set(imagePath = "app/images");
-	set(javascriptPath = "app/javascripts");
-	set(modelPath = "app/models");
-	set(pluginPath = "app/plugins");
-	set(pluginComponentPath = "app/plugins");
-	set(stylesheetPath = "app/stylesheets");
-	set(viewPath = "app/views");
-	set(controllerPath = "app/controllers");
+	set(eventPath = "events");
+	set(filePath = "files");
+	set(imagePath = "images");
+	set(javascriptPath = "javascripts");
+	set(modelPath = "models");
+	set(pluginPath = "plugins");
+	set(pluginComponentPath = "plugins");
+	set(stylesheetPath = "stylesheets");
+	set(viewPath = "views");
+	set(controllerPath = "controllers");
 
 	// CLI-Appends-Here
 </cfscript>
