@@ -1,6 +1,7 @@
 # CFWheels - TodoMVC - HTMX
 
-This is a reference implementation of the TodoMVC application in CFWheels and HTMX. 
+This is a reference implementation of the TodoMVC application in CFWheels and HTMX. Here is a [blog post](https://cfwheels.org/blog/todomvc-implementation-with-cfwheels-and-htmx/) talking about this implementation.
+
 
 ## To install
 
